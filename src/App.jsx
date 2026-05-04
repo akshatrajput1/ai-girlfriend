@@ -79,7 +79,7 @@ const App = () => {
           <img src="/profilePicture.png" className="w-10 h-10 rounded-full" />
           <div>
             <h2 className="text-white text-sm font-semibold">
-              My AI Girlfriend
+              My AI Companion
             </h2>
             <span className="text-green-400 text-xs">Online</span>
           </div>
@@ -104,7 +104,7 @@ const App = () => {
                 <div
                   className={`px-4 py-2 text-sm rounded-2xl ${
                     msg.sender === "user"
-                      ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
+                      ? "bg-linear-to-r from-blue-500 to-indigo-600 text-white"
                       : "bg-white/10 text-white"
                   }`}
                 >
