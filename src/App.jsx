@@ -40,7 +40,7 @@ const App = () => {
 
     setTimeout(async () => {
       try {
-        const res = await fetch("http://localhost:5000/chat", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/chat`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -76,10 +76,7 @@ const App = () => {
       <div className="w-[380px] h-[640px] rounded-[2rem] bg-white/5 backdrop-blur-2xl border border-white/10 shadow-xl flex flex-col overflow-hidden">
         {/* HEADER */}
         <div className="p-4 flex items-center gap-3 border-b border-white/10">
-          <img
-            src="/profilePicture.png"
-            className="w-10 h-10 rounded-full"
-          />
+          <img src="/profilePicture.png" className="w-10 h-10 rounded-full" />
           <div>
             <h2 className="text-white text-sm font-semibold">
               My AI Girlfriend
