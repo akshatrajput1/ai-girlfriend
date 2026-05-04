@@ -67,7 +67,7 @@ const App = () => {
         console.log(err);
         setMessages((prev) => [
           ...prev,
-          { text: "Network error 😭", sender: "bot" },
+          { text: "Network connection lost 🔌", sender: "bot" },
         ]);
       }
 
@@ -83,10 +83,10 @@ const App = () => {
           <img src="/profilePicture.png" className="w-10 h-10 rounded-full" />
           <div>
             <h2 className="text-white text-sm font-semibold">
-              My AI Companion
+              My AI Companion ✨
             </h2>
             <span className="text-green-400 text-xs">
-              {isTyping ? "Typing..." : "Online"}
+              {isTyping ? "Typing ✍️..." : "Online"}
             </span>
           </div>
         </div>
@@ -94,7 +94,8 @@ const App = () => {
         {/* CHAT */}
         <div className="flex-1 p-4 space-y-4 overflow-y-auto no-scrollbar">
           {messages.length === 0 && (
-            <div className="text-center text-gray-400 mt-16 text-sm">
+            <div className="text-center text-gray-400 mt-16 text-sm flex flex-col items-center gap-2">
+              <span className="text-3xl">👋</span>
               Start a conversation…
             </div>
           )}
@@ -118,8 +119,19 @@ const App = () => {
                 </div>
 
                 {msg.sender === "user" && (
-                  <div className="text-xs text-gray-400 text-right mt-1">
-                    {msg.time} {msg.status === "sent" ? "✓" : "✓✓"}
+                  <div className="text-xs text-gray-400 text-right mt-1 flex items-center justify-end gap-1">
+                    {msg.time}
+                    {/* SVG TICKS */}
+                    {msg.status === "sent" ? (
+                      <svg className="w-3.5 h-3.5 text-gray-400 inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    ) : (
+                      <svg className="w-4 h-4 text-blue-400 inline drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 6L7 17l-5-5"></path>
+                        <path d="M22 10l-7.5 7.5L13 16"></path>
+                      </svg>
+                    )}
                   </div>
                 )}
               </div>
@@ -157,13 +169,18 @@ const App = () => {
             />
             <button
               onClick={sendMessage}
-              className="bg-blue-500 px-4 rounded-full text-white"
+              className="bg-blue-500 w-10 h-10 flex items-center justify-center rounded-full text-white hover:bg-blue-600 transition-colors"
             >
-              ➤
+              {/* SVG SEND ICON */}
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-0.5">
+                <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+              </svg>
             </button>
           </div>
         ) : (
-          <div className="p-4 text-center text-red-400">You are blocked!</div>
+          <div className="p-4 text-center text-red-400 flex items-center justify-center gap-2">
+            <span>🚫</span> You are blocked!
+          </div>
         )}
       </div>
     </div>
