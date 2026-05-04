@@ -45,6 +45,14 @@ app.post("/chat", async (req, res) => {
     });
   }
 
+  // FIRST TIME GREETING
+  if (user.history.length === 0) {
+    return res.json({
+      reply: "Heyy 😌 what should I call you?",
+      block: false,
+    });
+  }
+
   // Name memory
   const nameMatch = userMessage.match(/my name is (\w+)/i);
   if (nameMatch) {

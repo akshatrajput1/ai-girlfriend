@@ -21,6 +21,10 @@ const App = () => {
       text: userText,
       sender: "user",
       status: "sent",
+      time: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     };
 
     setMessages((prev) => [...prev, userMsg]);
@@ -36,7 +40,7 @@ const App = () => {
       );
     }, 500);
 
-    const delay = Math.random() * 1000 + 800;
+    const delay = Math.min(2000, userText.length * 50);
 
     setTimeout(async () => {
       try {
@@ -81,7 +85,9 @@ const App = () => {
             <h2 className="text-white text-sm font-semibold">
               My AI Companion
             </h2>
-            <span className="text-green-400 text-xs">Online</span>
+            <span className="text-green-400 text-xs">
+              {isTyping ? "Typing..." : "Online"}
+            </span>
           </div>
         </div>
 
@@ -102,7 +108,7 @@ const App = () => {
             >
               <div className="max-w-[75%]">
                 <div
-                  className={`px-4 py-2 text-sm rounded-2xl ${
+                  className={`message px-4 py-2 text-sm rounded-2xl ${
                     msg.sender === "user"
                       ? "bg-linear-to-r from-blue-500 to-indigo-600 text-white"
                       : "bg-white/10 text-white"
@@ -113,7 +119,7 @@ const App = () => {
 
                 {msg.sender === "user" && (
                   <div className="text-xs text-gray-400 text-right mt-1">
-                    {msg.status === "sent" ? "✓" : "✓✓"}
+                    {msg.time} {msg.status === "sent" ? "✓" : "✓✓"}
                   </div>
                 )}
               </div>
@@ -139,7 +145,7 @@ const App = () => {
           <div className="p-3 border-t border-white/10 flex gap-2">
             <input
               className="flex-1 bg-white/10 text-white px-4 py-2 rounded-full outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Type your first message..."
+              placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
