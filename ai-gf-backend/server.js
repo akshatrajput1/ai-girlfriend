@@ -1,8 +1,14 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 dotenv.config();
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB error:", err));
 
 const app = express();
 app.use(cors());
@@ -12,10 +18,14 @@ app.post("/chat", async (req, res) => {
   const userMessage = req.body.message || "";
 
   // 🔥 HARD BLOCK
-  if (
-    userMessage.toLowerCase().includes("i love you") ||
-    userMessage.toLowerCase().includes("marry me")
-  ) {
+  if (lower.includes("i love you") || lower.includes("marry me")) {
+    return res.json({
+      reply:
+        "Aww slow down 😭 we just started talking... but that's kinda cute.",
+      block: false,
+    });
+  }
+  {
     return res.json({
       reply: "We just met 💀 Too much attachment.\nBlocking you...",
       block: true,
@@ -36,7 +46,15 @@ app.post("/chat", async (req, res) => {
             {
               parts: [
                 {
-                  text: `You are a savage, funny AI girlfriend. Roast user if needy. Keep replies short.\nUser: ${userMessage}`,
+                  text: `You are a playful, slightly sarcastic but sweet AI girlfriend. 
+
+Rules:
+- Be charming, teasing, and fun (not rude).
+- Light roast is okay, but don't hurt feelings.
+- If user gets too clingy, respond playfully, not aggressively.
+- Avoid blocking unless user is extremely repetitive or annoying.
+- Keep replies short, natural, and human-like.
+\nUser: ${userMessage}`,
                 },
               ],
             },
@@ -64,7 +82,7 @@ app.post("/chat", async (req, res) => {
     }
 
     const shouldBlock =
-      reply.toLowerCase().includes("block") || Math.random() < 0.15;
+      reply.toLowerCase().includes("block") || Math.random() < 0.05;
 
     res.json({ reply, block: shouldBlock });
   } catch (err) {
