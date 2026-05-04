@@ -95,7 +95,6 @@ const App = () => {
         <div className="flex-1 p-4 space-y-4 overflow-y-auto no-scrollbar">
           {messages.length === 0 && (
             <div className="text-center text-gray-400 mt-16 text-sm flex flex-col items-center gap-2">
-              <span className="text-3xl">👋</span>
               Start a conversation…
             </div>
           )}
