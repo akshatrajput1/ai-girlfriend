@@ -83,10 +83,10 @@ const App = () => {
           <img src="/profilePicture.png" className="w-10 h-10 rounded-full" />
           <div>
             <h2 className="text-white text-sm font-semibold">
-              My AI Companion ✨
+              My AI Companion
             </h2>
             <span className="text-green-400 text-xs">
-              {isTyping ? "Typing ✍️..." : "Online"}
+              {isTyping ? "Typing..." : "Online"}
             </span>
           </div>
         </div>
