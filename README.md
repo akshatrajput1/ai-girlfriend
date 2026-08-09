@@ -1,6 +1,6 @@
-# 💖 AI Girlfriend Chat App
+# AI Companion Chat App
 
-An interactive AI-powered girlfriend chat application built using modern web technologies. This project simulates human-like conversations using AI and provides a smooth, engaging user experience.
+An interactive AI-powered companion chat application built using modern web technologies. This project simulates human-like conversations using AI and provides a smooth, engaging user experience.
 
 ---
 
